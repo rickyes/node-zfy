@@ -1,0 +1,26 @@
+{
+  "name": "node-zfy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "stop": "pm2 stop app.js",
+    "start": "pm2 start app.js",
+    "startmax": "pm2 start app.js -i max",
+    "dev": "supervisor app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "base64-img": "^1.0.3",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.4",
+    "fs": "^0.0.1-security",
+    "multer": "^1.3.0",
+    "mysql": "^2.14.1",
+    "path": "^0.12.7",
+    "pm2": "^2.6.1",
+    "supervisor": "^0.12.0",
+    "uuid": "^3.1.0"
+  }
+}
