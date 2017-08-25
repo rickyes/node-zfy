@@ -52,3 +52,33 @@ exports.medicals = function(cal){
     cal(err);
   })
 }
+
+exports.find = function(params,cal) {
+  let sql = 'select * from zfy_pc where physical_number = ?';
+  new Promise((resolve,reject)=>{
+    connection.query(sql,params,function(err,result){
+      if(err){
+        console.log('find error');
+        reject(err);
+      }else{
+        resolve(result);
+      }
+    });
+  }).then((data)=>{
+    cal(data);
+  }).catch((err)=>{
+    cal(err);
+  });
+}
+
+exports.setMedicalInfo = function(params){
+  if(params == [] || params == null) return;
+  var sql = 'update zfy_pc set result_info=? where idcard = ?';
+  connection.query(sql,params,function(err,result){
+    if(err){
+      console.log('update error'+err.message);
+      return;
+    }
+    return result;
+  });
+}

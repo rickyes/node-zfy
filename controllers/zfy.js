@@ -2,7 +2,8 @@ const fs = require('fs')
     , base64Img = require('base64-img')
     , config = require('../config')
     , path = require('path')
-    , mysqlUtils = require('../utils/mysqlUtils');
+    , mysqlUtils = require('../utils/mysqlUtils')
+    , vailterUtils = require('../utils/vailterUtils');
 exports.medical = (req,res,next) => {
   try{
     let idcard = req.body.idcard;
@@ -35,4 +36,36 @@ exports.medicals = (req,res,next) => {
     res.json(data);
     res.end();
   });
+}
+
+exports.findOne = (req,res,next) => {
+  let physical_number = req.query.physical_number;
+  if(vailterUtils.isEmpty([physical_number])){
+    res.json({code:401,result:'体检号为空'});
+    res.end();
+    return;
+  }
+  mysqlUtils.find(physical_number,(data)=>{
+    res.json({code:200,result:data});
+    res.end();
+  });
+}
+
+exports.setMedicalInfo = (req,res,next)=> {
+  let result_info = req.body.result_info;
+  let idcard = req.body.idcard;
+  if(vailterUtils.isEmpty([result_info,idcard])){
+    res.json({code:401,result:'体检号为空'});
+    res.end();
+    return;
+  }
+  try {
+    mysqlUtils.setMedicalInfo([result_info,idcard]);
+    res.json({code:200,result:'提交体检意见成功！'});
+  } catch (err) {
+    console.log(err);
+    res.json({code:401,result:'提交体检意见错误'});
+  } finally {
+    res.end();
+  }
 }

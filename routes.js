@@ -4,4 +4,6 @@ exports.setRoutes = app => {
   app.get('/',index.index);
   app.post('/medical',zfy.medical);
   app.get('/medicals',zfy.medicals);
+  app.get('/find',zfy.findOne);
+  app.post('/setmedical',zfy.setMedicalInfo);
 }
