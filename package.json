@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "test": "node --harmony ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha",
     "stop": "pm2 stop app.js",
     "start": "pm2 start app.js",
     "startmax": "pm2 start app.js -i max",
@@ -23,5 +24,10 @@
     "pm2": "^2.6.1",
     "supervisor": "^0.12.0",
     "uuid": "^3.1.0"
+  },
+  "devDependencies": {
+    "istanbul": "^0.4.5",
+    "mocha": "^3.5.0",
+    "supertest": "^3.0.0"
   }
 }
