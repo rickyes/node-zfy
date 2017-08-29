@@ -3,7 +3,8 @@ const fs = require('fs')
     , config = require('../config')
     , path = require('path')
     , mysqlUtils = require('../utils/mysqlUtils')
-    , vailterUtils = require('../utils/vailterUtils');
+    , vailterUtils = require('../utils/vailterUtils')
+    , utils = require('../utils/utils');
 exports.medical = (req,res,next) => {
   try{
     let idcard = req.body.idcard;
@@ -18,14 +19,12 @@ exports.medical = (req,res,next) => {
       return;
     }
     let img_path = base64Img.imgSync(req.body.img,path.join(config.context,'public/img/camera'),idcard);
-    console.log(img_path);
     let idcard_img = base64Img.imgSync(req.body.idcardimg,path.join(config.context,'public/img/idcard'),idcard);
-    console.log(idcard_img);
-    let params = [idcard,name,idcard+'.png',sex,birthtime,nationality,address,idcard+'.jpg'];
+    let tokenTime = utils.getTokenTime();
+    let params = [idcard,name,idcard+'.png',sex,birthtime,nationality,address,idcard+'.jpg',tokenTime];
     mysqlUtils.add(params);
-    res.json({code:200,result:'上传体检登记资料成功！'});
+    res.json({code:200,result:'上传体检登记资料成功！',physical_number: tokenTime});
   }catch(err){
-    console.log(err);
     res.json({code:401,result:'上传错误！请检查是否拍照'});
   }
   res.end();

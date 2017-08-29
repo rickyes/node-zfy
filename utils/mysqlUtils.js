@@ -24,8 +24,8 @@ connect();
 
 exports.add = function(params) {
   if(params == [] || params == null) return;
-  var insert_sql = 'insert into zfy_pc(id,idcard,name,img_path,sex,birthtime,nationality,address,idcardimg)'
-        +'values("'+uuid.v1()+'",?,?,?,?,?,?,?,?)';
+  var insert_sql = 'insert into zfy_pc(id,idcard,name,img_path,sex,birthtime,nationality,address,idcardimg,physical_number)'
+        +'values("'+uuid.v1()+'",?,?,?,?,?,?,?,?,?)';
   connection.query(insert_sql,params,function(err,result){
     if(err){
       console.log('insert error'+err.message);
