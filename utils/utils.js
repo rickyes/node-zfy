@@ -1,3 +1,4 @@
+//根据时间戳生成体检号yyyyMMddhhmmss
 var getTokenTime = function(){
   let replaceTimeStr = function(times){
     return times.map(time => time < 10 ? '0'+time : time.toString());

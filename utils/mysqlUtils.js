@@ -21,7 +21,7 @@ function connect () {
 }
 
 connect();
-
+//添加体检记录
 exports.add = function(params) {
   if(params == [] || params == null) return;
   var insert_sql = 'insert into zfy_pc(id,idcard,name,img_path,sex,birthtime,nationality,address,idcardimg,physical_number)'
@@ -34,7 +34,7 @@ exports.add = function(params) {
     return result;
   });
 }
-
+//体检人员列表
 exports.medicals = function(cal){
   let sql = 'select * from zfy_pc';
   new Promise((resolve,reject)=>{
@@ -52,7 +52,7 @@ exports.medicals = function(cal){
     cal(err);
   })
 }
-
+//根据体检号查询体检人员信息
 exports.find = function(params,cal) {
   let sql = 'select * from zfy_pc where physical_number = ?';
   new Promise((resolve,reject)=>{
@@ -70,7 +70,7 @@ exports.find = function(params,cal) {
     cal(err);
   });
 }
-
+//根据身份证修改体检总结
 exports.setMedicalInfo = function(params){
   if(params == [] || params == null) return;
   var sql = 'update zfy_pc set result_info=? where idcard = ?';

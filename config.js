@@ -1,8 +1,6 @@
 //应用端口
 exports.port = 3000;
-//mongodb地址
-exports.mysqlUrl = '';
-
+//应用根路径
 exports.context = __dirname;
 
 //mysql配置参数

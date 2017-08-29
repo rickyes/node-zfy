@@ -6,6 +6,7 @@ exports.setRoutes = app => {
   app.get('/medicals',zfy.medicals);
   app.get('/find',zfy.findOne);
   app.post('/setmedical',zfy.setMedicalInfo);
+  // 404页面
   app.use(function (req, res) {
     if (!res.headersSent) {
       res.status(404).render('404');
