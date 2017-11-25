@@ -1,4 +1,6 @@
 # node-zfy
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/zhoumingque/node-zfy.svg)](https://greenkeeper.io/)
 ```
 Node.js 数据服务
 ```
